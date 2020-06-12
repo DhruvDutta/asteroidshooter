@@ -8,6 +8,15 @@ let config = {
         update:update
     }
 }
+let gamebest;
+
+if(localStorage.getItem('gamebest')==null){
+    localStorage.setItem('gamebest',0)
+}else{
+    gamebest = localStorage.getItem('gamebest')
+}
+
+
 
 let game = new Phaser.Game(config)
 let ship;
@@ -17,8 +26,11 @@ let ic;
 let shipmovement;
 let missile=[];
 let btn;
-let aspeed = 1;
+let aspeed = 3;
 let mspeed = 10;
+let head;
+let score=0;
+let scoreText;
 function preload(){
     this.load.image('back','script/back.jpg');
     this.load.image('ship','script/ship.png');
@@ -39,6 +51,13 @@ function create(){
     let scaleY = this.cameras.main.height / this.back.height;
     let scale = Math.max(scaleX, scaleY);
     this.back.setScale(scale)
+    let style = { font: `20px Arial`, fill: '#fff' };
+    scoreText = this.add.text(35, 120, 'Time: ' + score, style);
+    gamebest = this.add.text(10, 120, 'Best: ' + localStorage.getItem('gamebest'), style);
+    scoreText.angle = -90;
+    scoreText.depth = 5;
+    gamebest.angle = -90;
+    gamebest.depth = 5;
     if(W>H){//desktop
         ship = this.add.sprite(H/10,H/2,'ship').setScale(H/5000).setInteractive();
         ship.angle = 90;
@@ -111,10 +130,18 @@ function create(){
         if(aspeed<=6){
             aspeed+=.5
         }
-        if(aspeed==3){
+        if(aspeed==5){
             mspeed+=2;
         }
     },12000)
+    setInterval(function(){
+        score+=.1;
+        scoreText.setText('score: ' + score);
+        if(localStorage.getItem('gamebest')<score){
+            localStorage.setItem('gamebest',score)
+            gamebest.setText('gamebest:'+score)
+    }
+    },100)
     
 }
 function update(){
@@ -123,6 +150,7 @@ function update(){
         a.angle+=2;
         a.y+=aspeed;
         if(a.y>shipmovement-45){
+            document.write('<center><h2 style="margin-top:50vh;">Game Over</h2><hr><a href="https://dhruvdutta.github.io/MYWebsite/">View More</a><hr></center>');
             throw new Error('game over')
         }
     }
