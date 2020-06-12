@@ -58,25 +58,7 @@ function create(){
     scoreText.depth = 5;
     gamebest.angle = -90;
     gamebest.depth = 5;
-    if(W>H){//desktop
-        ship = this.add.sprite(H/10,H/2,'ship').setScale(H/5000).setInteractive();
-        ship.angle = 90;
-        this.ic = this.add.sprite(-500,H/2,'ic').setInteractive();
-        shipmovement = H/10;
-        ship.depth = 3;
-        this.input.setDraggable(ship);
-        this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-        if(dragX<W/2 && dragX>0){
-            gameObject.x = dragX;
-        }
-        if(dragY<game.config.height && dragY>0){
-            gameObject.y = dragY;
 
-        }
-
-    });
-
-    }else{
         //mobile
         ship = this.add.sprite(W/2,H-70,'ship').setScale(H/5000).setInteractive()
         ic = this.add.sprite(W/2,H+200,'ic').setScale(.5);
@@ -100,7 +82,6 @@ function create(){
         this.btn.on('pointerdown',
         function(){
             let b =this.physics.add.sprite(ship.x,ship.y,'missile').setScale(.07);
-
             b.angle = -90;
             b.depth = 3;
             missile.push(b);
@@ -108,7 +89,7 @@ function create(){
 
 
         },this);
-    }
+    
 
     setInterval(function(g){
         num = Math.random();
@@ -119,29 +100,29 @@ function create(){
         }
         
         if(num=='a2'){
-            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.5));
+            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.3));
         }else{
             asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.2));
         }
-    },2000,this)
+    },1500,this)
 
     
     setInterval(function(){
         if(aspeed<=6){
-            aspeed+=.5
+            aspeed+=.5;
         }
         if(aspeed==5){
             mspeed+=2;
         }
     },12000)
     setInterval(function(){
-        score+=.1;
-        scoreText.setText('score: ' + score);
+        score+=.01;
+        scoreText.setText('score: ' +score.toFixed(2));
         if(localStorage.getItem('gamebest')<score){
             localStorage.setItem('gamebest',score)
             gamebest.setText('gamebest:'+score)
     }
-    },100)
+    },10)
     
 }
 function update(){
