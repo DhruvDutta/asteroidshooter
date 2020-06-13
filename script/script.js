@@ -27,7 +27,7 @@ let shipmovement;
 let missile=[];
 let btn;
 let aspeed = 3;
-let mspeed = 10;
+let mspeed = 20;
 let head;
 let score=0;
 let scoreText;
