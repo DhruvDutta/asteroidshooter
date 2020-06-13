@@ -46,9 +46,6 @@ function create(){
     let W = game.config.width;
     let H = game.config.height;
     this.back = this.add.sprite(W/2,H/2,'back');
-    let scaleX = this.cameras.main.width / this.back.width;
-    let scaleY = this.cameras.main.height / this.back.height;
-    let scale = Math.max(scaleX, scaleY);
     this.back.setScale(.2)
     ship = this.add.sprite(W/2,H-70,'ship').setScale(H/5000).setInteractive();
     ship.depth = 4;
