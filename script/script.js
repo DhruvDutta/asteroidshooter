@@ -32,6 +32,7 @@ let head;
 let score=0;
 let scoreText;
 let style;
+let point = 10;
 function preload(){
     this.load.image('back','script/back.jpg');
     this.load.image('ship','script/ship.png');
@@ -65,18 +66,9 @@ function create(){
     this.name.angle=-90;
     this.txt = this.add.text((W*1.35)/3 +50,H-190,`Drag the Ship to Aim\nTap on the Red Button to 🔥`,{align:'center'})
     this.txt.angle = -90;
-    this.txt1 = this.add.text(30,H-200,`Time is of the Essence`,{font:'18px ',align:'center'})
-    this.txt1.angle = -90;
 
-    function hex_to_ascii(str1)
- {
-	var hex  = str1.toString();
-	var str = '';
-	for (var n = 0; n < hex.length; n += 2) {
-		str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
-	}
-	return str;
- }
+
+  
 
     
 }
@@ -95,6 +87,8 @@ function update(){
         m.y-=mspeed;
         if(m.y<-50){
             m="";
+            score-=score/20;
+            scoreText.setText('score: ' +score);
         }
         for(k=0;k<asteroids.length;k++){
             if(contact(m,asteroids[k])){
@@ -104,6 +98,11 @@ function update(){
                 asteroids[k].setActive(false);
                 asteroids[k].setVisible(false);
                 asteroids.splice(k,1);
+                score+=point;
+                scoreText.setText('score: ' +score);
+                if(localStorage.getItem('gamebest')<score){
+                    localStorage.setItem('gamebest',score)
+                    gamebest.setText('gamebest:'+score)}
             }
         }
 
@@ -155,19 +154,13 @@ function run(){
     setInterval(function(){
         if(aspeed<=6){
             aspeed+=.5;
+            point+=10;
         }
         if(aspeed%2==0){
             mspeed+=2;
         }
     },12000)
-    setInterval(function(){
-        score+=.01;
-        scoreText.setText('score: ' +score.toFixed(2));
-        if(localStorage.getItem('gamebest')<score){
-            localStorage.setItem('gamebest',score.toFixed(2))
-            gamebest.setText('gamebest:'+score.toFixed(2))
-    }
-    },10)
+    
     
 }
 
