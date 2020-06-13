@@ -44,6 +44,7 @@ function preload(){
 
 }
 function create(){
+    game.input.addPointer();
     let W = game.config.width;
     let H = game.config.height;
     this.back = this.add.sprite(W/2,H/2,'back');
