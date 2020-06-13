@@ -119,7 +119,6 @@ function run(){
     shipmovement = H/1.2;
     this.name.setText("");
     this.txt.setText("");
-    this.txt1.setText("");
 
     this.input.setDraggable(ship);
     this.input.on('drag', drag);
