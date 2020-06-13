@@ -87,7 +87,8 @@ function update(){
         m.y-=mspeed;
         if(m.y<-50){
             m="";
-            score-=score/20;
+            score-=parseInt(score/20);
+            
             scoreText.setText('score: ' +score);
         }
         for(k=0;k<asteroids.length;k++){
