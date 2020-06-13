@@ -49,7 +49,7 @@ function create(){
     let scaleX = this.cameras.main.width / this.back.width;
     let scaleY = this.cameras.main.height / this.back.height;
     let scale = Math.max(scaleX, scaleY);
-    this.back.setScale(scale)
+    this.back.setScale(.2)
     ship = this.add.sprite(W/2,H-70,'ship').setScale(H/5000).setInteractive();
     ship.depth = 4;
     ic = this.add.sprite(W/2,H+200,'ic').setScale(.5);
