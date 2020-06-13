@@ -159,7 +159,7 @@ function run(){
         if(aspeed<=6){
             aspeed+=.5;
         }
-        if(aspeed==5){
+        if(aspeed%2==0){
             mspeed+=2;
         }
     },12000)
