@@ -148,7 +148,7 @@ function run(){
 
         }else{
             num='a2';
-            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.2));
+            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.07));
 
         }
 
@@ -190,8 +190,8 @@ function drag(pointer, gameObject, dragX, dragY) {
 function contact(obj1, obj2) {
     var distX = Math.abs(obj1.x - obj2.x);
     var distY = Math.abs(obj1.y - obj2.y);
-    if (distX < obj1.width / 20) {
-        if (distY < obj1.height / 20) {
+    if (distX < obj1.width / 50) {
+        if (distY < obj1.height / 50) {
             return true;
         }
     }
