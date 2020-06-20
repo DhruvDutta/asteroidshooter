@@ -140,11 +140,11 @@ function run(){
         num = Math.random();
         if(num<0.9){
             num='a1';
-            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.07));
+            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.1));
 
         }else{
             num='a2';
-            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.07));
+            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.1));
 
         }
 
