@@ -63,7 +63,7 @@ function create(){
     this.btn.depth = 3;
     style = { font: `20px Arial`, fill: '#fff' };
 
-    gamebest = this.add.text(10, 150, 'Best: ' + localStorage.getItem('gamebest'), style);
+    gamebest = this.add.text(10, 170, 'Best: ' + localStorage.getItem('gamebest'), style);
     
     gamebest.angle = -90;
     gamebest.depth = 5;
@@ -133,7 +133,7 @@ function update(){
 function run(){
     let W = game.config.width;
     let H = game.config.height;
-    scoreText = this.add.text(35, 120, 'Time: ' + score, style);
+    scoreText = this.add.text(35, 170, 'Time: ' + score, style);
     scoreText.angle = -90;
     scoreText.depth = 5;
     shipmovement = H/1.2;
