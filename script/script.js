@@ -33,6 +33,7 @@ let score=0;
 let scoreText;
 let style;
 let point = 10;
+let play;
 function preload(){
     this.load.image('back','script/back1.jpg');
     this.load.image('ship','script/ship.png');
@@ -43,7 +44,6 @@ function preload(){
     this.load.image('fire','script/fire.png');
     this.load.audio('missilefire','script/missile.mp3')
     this.load.audio('exp1','script/explosion1.mp3')
-    
 
 
 }
@@ -63,7 +63,7 @@ function create(){
     this.btn.depth = 3;
     style = { font: `20px Arial`, fill: '#fff' };
 
-    gamebest = this.add.text(10, 120, 'Best: ' + localStorage.getItem('gamebest'), style);
+    gamebest = this.add.text(10, 150, 'Best: ' + localStorage.getItem('gamebest'), style);
     
     gamebest.angle = -90;
     gamebest.depth = 5;
@@ -76,8 +76,18 @@ function create(){
 
     this.sound.add('missilefire')
     this.sound.add('exp1');
-    
-
+    play = this.add.text(W/2+70,H/2 +35,'Play',{font:'70px Arial',fill:'#fff',align:'center'})
+    play.alpha=0;
+    play.depth=2;
+    play.angle = -90;
+    this.tweens.add({
+        targets:[play],
+        alpha:1,
+        duration:700,
+        ease:'Sine.easeInOut',
+        loop:-1,
+        yoyo:true
+    })
 
     
 }
@@ -129,7 +139,7 @@ function run(){
     shipmovement = H/1.2;
     this.name.setText("");
     this.txt.setText("");
-
+    play.setText("");
     this.input.setDraggable(ship);
     this.input.on('drag', drag);
     this.input.off('pointerdown');
