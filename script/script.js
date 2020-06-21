@@ -43,7 +43,7 @@ function preload(){
     this.load.image('fire','script/fire.png');
     this.load.audio('missilefire','script/missile.mp3')
     this.load.audio('exp1','script/explosion1.mp3')
-    this.load.audio('exp2','script/explosion2.mp3')
+    
 
 
 }
@@ -76,7 +76,7 @@ function create(){
 
     this.sound.add('missilefire')
     this.sound.add('exp1');
-    this.sound.add('exp2');
+    
 
 
     
