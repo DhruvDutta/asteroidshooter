@@ -27,27 +27,33 @@ let shipmovement;
 let missile=[];
 let btn;
 let aspeed = 3;
-let mspeed = 20;
+let mspeed = 10;
 let head;
 let score=0;
 let scoreText;
 let style;
 let point = 10;
 function preload(){
-    this.load.image('back','script/back.jpg');
+    this.load.image('back','script/back1.jpg');
     this.load.image('ship','script/ship.png');
     this.load.image('ic','script/ic.jpg');
     this.load.image('a1','script/a1.png');
     this.load.image('a2','script/a2.png');
     this.load.image('missile','script/missile.png');
     this.load.image('fire','script/fire.png');
+    this.load.audio('missilefire','script/missile.mp3')
+    this.load.audio('exp1','script/explosion1.mp3')
+    this.load.audio('exp2','script/explosion2.mp3')
+
+
 }
 function create(){
     game.input.addPointer();
     let W = game.config.width;
     let H = game.config.height;
     this.back = this.add.sprite(W/2,H/2,'back');
-    this.back.setScale(.2)
+    this.back.setScale(.8)
+    this.back.angle=90;
     ship = this.add.sprite(W/2,H-70,'ship').setScale(H/5000).setInteractive();
     ship.depth = 4;
     ic = this.add.sprite(W/2,H+200,'ic').setScale(.5);
@@ -68,7 +74,10 @@ function create(){
     this.txt.angle = -90;
 
 
-  
+    this.sound.add('missilefire')
+    this.sound.add('exp1');
+    this.sound.add('exp2');
+
 
     
 }
@@ -131,7 +140,7 @@ function run(){
         b.depth = 3;
         missile.push(b);
         this.physics.add.overlap(ship, b, contact);
-
+        this.sound.play('missilefire')
 
     },this);
 
@@ -144,7 +153,7 @@ function run(){
 
         }else{
             num='a2';
-            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.1));
+            asteroids.push(g.add.sprite(Phaser.Math.Between(50,game.config.width-50),-10,num).setScale(.09));
 
         }
 
@@ -182,6 +191,7 @@ function contact(obj1, obj2) {
     var distY = Math.abs(obj1.y - obj2.y);
     if (distX < obj1.width / 50) {
         if (distY < obj1.height / 50) {
+            game.sound.play('exp1')
             return true;
         }
     }
