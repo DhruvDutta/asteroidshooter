@@ -68,7 +68,7 @@ function create(){
     gamebest.angle = -90;
     gamebest.depth = 5;
     this.input.on('pointerdown',run,this)
-    this.name = this.add.text((W*1.35)/3, H-150, 'Asteroid_Shooter ', { font:'40px algerian'  ,align:'center' ,color:'white' });
+    this.name = this.add.text((W*1.35)/3, H-150, 'Asteroid Shooter ', { font:'40px algerian'  ,align:'center' ,color:'white' });
     this.name.angle=-90;
     this.txt = this.add.text((W*1.35)/3 +50,H-190,`Drag the Ship to Aim\nTap on the Red Button to 🔥`,{align:'center'})
     this.txt.angle = -90;
