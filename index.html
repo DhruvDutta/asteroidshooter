@@ -9,10 +9,56 @@
         body{
             margin: 4px;
         }
+        .loading{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+            height: 100px;
+            width: 100px;
+            background:linear-gradient(45deg,transparent,transparent,#e5f403);
+            border-radius: 50%;
+            animation: animate 1s linear infinite;
+
+        }
+        .loading::before{
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+            background-color: #000;
+            right: 5px;
+            bottom: 5px;
+            z-index: 1000;
+        }
+        .loading::after{
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+            background:linear-gradient(45deg,transparent,transparent,#e5f403);
+            right: 5px;
+            bottom: 5px;
+            z-index: 1;
+            filter: blur(30px);
+        }
+        @keyframes animate{
+            0%{
+                transform: rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+                filter: hue-rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
-    
+    <div class="page"></div>
     <script src="script/script.js"></script>
 </body>
 </html>
