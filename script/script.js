@@ -2,6 +2,10 @@ let config = {
     height:window.innerHeight -8,
     width:window.innerWidth -8,
     physics: { default: 'arcade' },
+    parent:'page',
+    dom:{
+        createContainer:true
+    },
     scene:{
         preload:preload,
         create:create,
@@ -34,7 +38,12 @@ let scoreText;
 let style;
 let point = 10;
 let play;
+let div;
 function preload(){
+    div = document.createElement('div');
+    div.setAttribute('class','loading');
+    div = this.add.dom(game.config.width/2, game.config.height/2,div);
+    div.alpha=10;
     this.load.image('back','script/back1.jpg');
     this.load.image('ship','script/ship.png');
     this.load.image('ic','script/ic.jpg');
@@ -88,6 +97,9 @@ function create(){
         loop:-1,
         yoyo:true
     })
+    
+    div.setActive(false);
+    div.setVisible(false);
 
     
 }
